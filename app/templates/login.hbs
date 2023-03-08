@@ -1,0 +1,14 @@
+<div class="picture">
+<div class="container">
+  <div class="form">
+    <form class="login-form">
+      {{input type="email" name="email_id" value=email_id placeholder="EmailId" required = true}}
+      {{input type="password" name="passwrd" value=passwrd placeholder="Password" required = true}}
+
+      <button type="submit" class="btn" {{action 'handleSignUp'}}>Login</button>
+      <p class="message">Not registered?<a href="registration"> Sign Up</a></p>
+  </form>
+  </div>
+</div>
+
+</div>

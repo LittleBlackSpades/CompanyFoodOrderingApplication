@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata
+');
+
+@import 'register';
+@import  'admin';
+@import 'userhome';
+
+$font-family:'Literate';
+
+.zod-contracts-body{
+
+    .zod-contract-header{
+       background-color:#373334;
+       height: 70px;
+       width: calc(100% - 25px);
+       position: fixed;
+       z-index: 0;
+       margin-left: 0px;
+       margin-right: 0px;
+       margin-top: 0px;
+       ._heading{
+           font-weight: 540;
+           font-size: 26px;
+           padding-top: 18px;
+           padding-left: 14px;
+           display: flex;
+
+           img{
+            float: left;
+            justify-content: center;
+            margin-top: -12px;
+            padding-right: 10px;
+           }
+       }
+
+       ._title{
+        float: left;
+        color: whitesmoke;
+       }
+       .next{
+        margin-left: 5px;
+        color: #ce3635;
+       }
+    }
+
+}
+
+body{
+      background-color: #eeeeee;
+      font-family: $font-family;
+
+
+}
+.btn-arrange{
+  display: flex;
+  float:right;
+  margin-top: 15px;
+  margin-right: 20px;
+ .btn{
+  font-size: 14px;
+  padding: 8px;
+  background:  #ce3635;
+  width: 120px;
+  z-index: 10;
+  border-radius: 35px;
+  margin-left: 20px;
+  display:inline-flex;
+  visibility: visible;
+  color:  #FAFAFA;
+  text-align: center;
+ }
+}

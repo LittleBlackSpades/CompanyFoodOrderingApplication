@@ -1,0 +1,98 @@
+
+
+
+
+@mixin btn($fontcolor: #FAFAFA){
+
+  font-size: 15px;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  padding: 15px;
+  background:  #ce3635;
+  color: $fontcolor;
+  text-transform: uppercase;
+}
+
+@mixin message($fontcolor: #90A4AE){
+  color: $fontcolor;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+@mixin input($bkgnd: #F5F5F5){
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  outline: 0;
+  font-size: 15px;
+  text-align: center;
+  box-sizing: border-box;
+  background: $bkgnd;
+}
+
+.picture{
+    background-image: url('../assets/images/foodpic.jpg');
+    background-size: cover;
+    height:100vh;
+    z-index: 1;
+
+}
+.container{
+  padding: 8% 0 0;
+  width: 400px;
+
+  margin-left: 65vh;
+  position: relative;
+
+.form{
+  position: relative;
+  z-index: 1;
+  max-width: 350px;
+  margin: 0 auto 100px;
+  margin-top: 50px;
+  padding: 45px;
+  background: #FFFFFF;
+}
+}
+
+
+
+
+.form {
+  input{
+    @include input;
+
+    ::placeholder {
+      color: #90A4AE;
+    }
+
+  }
+  label{
+    font-weight: 600;
+  }
+  .btn{
+    @include btn;
+
+  }
+  .message {
+    @include message;
+    a {
+      text-decoration: none;
+      color: #00BFA5;
+    }
+  }
+}
+
+.form .register-form{
+  display: none;
+}
+
+.bg-blur{
+ background: rgba(0, 0, 0, 0.1);
+}
+
+
+

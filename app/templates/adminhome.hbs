@@ -1,0 +1,175 @@
+ <div class ="btn-arrange">
+
+  <button class="btn"{{action "showCustomer"}} >Customer</button>
+ <button class="btn" {{action "showCategory"}}> Food Category </button>
+ <button class="btn" {{action "showFoodItem"}}> Food Item</button>
+ <button class="btn" {{action "showOrder"}}>Time Log</button>
+   <button  class="btn"{{action "logout"}}>logout</button>
+ </div>
+
+<div class="adm-container">
+    <div class="adm-mid-layer">
+      <div class="adm-table" >
+
+      {{#if  isCategory}}
+        <table>
+          <thead>
+              <tr>
+                <th>S.NO</th>
+                <th>Food Category Name</th>
+                <th></th>
+              </tr>
+            </thead>
+         <tbody>
+          {{#each categories as |item index|}}
+            <tr>
+              <td>{{index}}</td>
+              <td>{{item.foodcategory_name}}</td>
+              <img src="../assets/images/trash.png" height="20px" width="20px" onclick= {{action "deleteCategories" item item.foodcategory_name}}>
+            </tr>
+            {{/each}}
+         </tbody>
+        </table>
+      {{/if}}
+
+
+      {{#if isFoodItem}}
+       <div class ="btn-class"><button class="fod-add-btn" {{action "openAddItem"}}> + Add</button></div>
+          <table>
+          <thead>
+              <tr>
+                <th>Food Name</th>
+                <th>Food Category Type</th>
+                <th>Item Description</th>
+                <th>Unit Price</th>
+                <th>Available Quantity</th>
+                <th>Item Pic</th>
+                <th>Maximum Allowed Quantity</th>
+
+
+              </tr>
+            </thead>
+         <tbody>
+          {{#each foodItem as |item index|}}
+            <tr>
+              <td>{{item.fooditem_name}} </td>
+              <td>{{item.foodcategory_name}}</td>
+              <td>{{item.item_desc}}</td>
+              <td>{{item.unit_price}} </td>
+              <td>{{item.avail_quantity}} </td>
+              <td>{{item.fooditem_pic}} </td>
+              <td>{{item.max_allowed_quanity}}
+                <img src="../assets/images/edit.png" height="20px" width="20px" style="padding:0px 10px" onclick={{action "editOpen" item.fooditem_id item}}>
+               <img src="../assets/images/trash.png" height="20px" width="20px"  onclick = {{action "deleteItem" item}}></td>
+              </tr>
+              {{/each}}
+            </tbody>
+        </table>
+      {{/if}}
+
+      {{#if isCustomer}}
+          <table>
+          <thead>
+              <tr>
+                <th>Customer ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email_Id</th>
+                <th>Age</th>
+                <th>Phone N0</th>
+              </tr>
+            </thead>
+         <tbody>
+          {{#each customer as |item index|}}
+            <tr>
+              <td>{{item.customer_id}}</td>
+              <td>{{item.firstname}} </td>
+              <td>{{item.lastname}}</td>
+              <td>{{item.email_id}}</td>
+              <td>{{item.age}} </td>
+              <td>{{item.phoneno}} </td>
+            </tr>
+            {{/each}}
+         </tbody>
+        </table>
+
+      {{/if}}
+         {{#if isOrder}}
+          <div class = "date">
+            <div>Start Date:{{input type = "date" value = startDate}} </div>
+            <div>End Date :{{input type ="date" value = lastDate}} </div>
+            <input type="submit" value=" Filter Order" id ="filter" {{action "filterOrder"}}>
+             </div>
+          <table>
+          <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Food Item Name</th>
+                <th>Food Category</th>
+                <th>Order Quantity</th>
+                <th>Created Item</th>
+              </tr>
+            </thead>
+         <tbody>
+          {{#each showOrder as |orderlist index|}}
+            <tr>
+              <td>{{orderlist.order_id}}</td>
+              <td>{{orderlist.fooditem_name}} </td>
+              <td>{{orderlist.foodcategory_name}}</td>
+              <td>{{orderlist.item_quantity}}</td>
+              <td>{{orderlist.created_time}}</td>
+            </tr>
+            {{/each}}
+         </tbody>
+        </table>
+      {{/if}}
+      </div>
+    </div>
+  </div>
+
+{{#if isaddItem}}
+
+<div class="container">
+  <div class="form" {{action "addfood" on="submit"}}>
+    <form  class="login-form">
+      {{input type="text" name="fooditem_name" value=fooditem_name placeholder="Fooditem Name"  required = true}}
+      {{input type="text" name="foodcategory_name" value =foodcategory_name placeholder="Foodcategory Name" required= true}}
+      {{input type="text" name="item_desc" value=item_desc placeholder="Item description" required= true}}
+      {{input type="text" name="unit_price" value=unit_price placeholder="Unit Price" required = true}}
+      {{input type="text" name="avail_quantity"  value=avail_quantity placeholder="Avail Quantity" required = true}}
+      {{input type="text" name="max_allowed_quanity"  value=max_allowed_quanity placeholder="Max Allowed Quantity" required = true}}
+      {{input type="text" name="fooditem_pic"  value=fooditem_pic placeholder="Food Item Pic Link" required= true}}
+
+      <button type="submit" class="btn">Add</button>
+      <button class="btn" style="background-color:#f2f2f2;color:black;" onclick={{action "cancelAdd" }}>Cancel</button>
+  </form>
+  </div>
+</div>
+{{/if}}
+
+{{#if isEditItem}}
+<div class="bg-blur"></div>
+<div class="container">
+  <div class="form" {{action "editfood" on="submit"}}>
+    <form  class="login-form">
+      <label for="">Food Name:</label>
+      {{input type="text" name="fooditem_name" value=fooditem_name placeholder="Fooditem Name"  required = true}}
+       <label for="">Category Name:</label>
+      {{input type="text" name="foodcategory_name" value =foodcategory_name placeholder="Foodcategory Name" required= true}}
+      <label for=""> Item Description:</label>
+      {{input type="text" name="item_desc" value=item_desc placeholder="Item description" required= true}}
+      <label for="">Unit Price:</label>
+      {{input type="text" name="unit_price" value=unit_price placeholder="Unit Price" required = true}}
+      <label for=""> Avail Quantity:</label>
+      {{input type="text" name="avail_quantity"  value=avail_quantity placeholder="Avail Quantity" required = true}}
+      <label for="">Maximum Allowed Quantity:</label>
+      {{input type="text" name="max_allowed_quanity"  value=max_allowed_quanity placeholder="Max Allowed Quantity" required = true}}
+      <label for="">Food Item Pic: </label>
+      {{input type="text" name="fooditem_pic"  value=fooditem_pic placeholder="Food Item Pic Link" required= true}}
+
+      <button type="submit" class="btn">Update</button>
+      <button class="btn" style="background-color:#f2f2f2;color:black;" onclick={{action "canceledit"}}>Cancel</button>
+  </form>
+  </div>
+</div>
+{{/if}}

@@ -1,0 +1,83 @@
+  <div class="user-container" >
+  <div class ="cart">
+    <button class="cart-button" style="margin-right: -120px; margin-top:15px"> <img src="../assets/images/logout.jpg" height="31px" width="31px" onclick={{action "logout"}}></button>
+     <button class="cart-button">
+      <img src="https://www.licious.in/img/default/cart_icon.svg" {{action "showCart"}} ><span class ="dot">{{cart_len}}</span></button>
+
+  </div>
+
+
+  <div>
+    <div class="category-bar" >
+      <button {{action "getAllItems"}} class="{{if isAllSelected 'color-head'}}"> All</button>
+      <button{{action "breakfast"}} class="{{if isBFSelected 'color-head'}}">BreakFast</button>
+      <button {{action "lunch"}} class="{{if isLunchSelected 'color-head'}}">Lunch</button>
+      <button {{action "dinner"}} class="{{if isDinnerSelected 'color-head'}}">Dinner</button>
+      <button{{action "others"}} class="{{if isOtherSelected 'color-head'}}">Others</button>
+    </div>
+
+
+    <div>
+      <div class="food-container">
+
+        <ul>
+          {{#each foods as |item|}}
+
+          <li>
+            <article>
+            <div>
+              <img src="../assets/images/{{item.fooditem_pic}}" class="img-container"></div>
+            <div class="item-desc">
+              <h4>{{item.fooditem_name}}</h4>
+              <p>{{item.item_desc}}  </p></div>
+            <footer>
+                <h4>Rs: {{item.unit_price}}</h4>
+                {{input id=item.fooditem_id type="number"  value = 1 class="fod-input" max = item.max_allowed_quanity  min = 1}}
+              <button type ="submit" {{action "addingToCart" item  item_quantity}}> Add to cart</button>
+              </footer>
+            </article>
+
+          </li>
+            {{/each}}
+          </ul>
+          </div>
+        </div>
+
+      </div>
+
+      {{#if isCart}}
+    <div class="cart-open">
+      <img src="../assets/images/cancel.png" onclick={{action "close"}} id="close-button">
+      <h4>Cart Items </h4>
+
+    <div class="popup-box">
+         <table>
+
+        <tr>
+          <td>Name</td>
+          <td>Qty</td>
+          <td>Unit Price</td>
+          <td></td>
+        </tr>
+        {{#each cartItem as |item index|}}
+         <tr>
+          <td>{{item.fooditem_name}}</td>
+          <td>{{item.item_quantity}} </td>
+          <td>{{item.unit_price}} </td>
+          {{#if item}}
+          <td><img src="../assets/images/trash.png" onclick={{action "deleteOrder" index item.fooditem_id}} height="25px" width="25px"></td>
+          {{/if}}
+           </tr>
+        {{/each}}
+
+        </table>
+    </div>
+    <div class="bottom-row">
+      <p id="grand-sum">Grand Total  Rs {{sum}} </p>
+
+      <button {{action "order" sum }}>Place Order</button>
+    </div>
+
+    </div>
+     {{/if}}
+</div>

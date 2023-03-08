@@ -1,0 +1,19 @@
+<div class="picture" >
+<div class="container">
+  <div class="form" {{action "handleRegisterUp" on="submit"}}>
+    <form  class="login-form">
+      {{input type="text" name="firstName" value=firstName placeholder="Firstname" required= true }}
+      {{input type="text" name="lastName" value =lastName placeholder="Lastname" required= true}}
+      {{input type="email" name="email_id" value=email_id placeholder="Email Id" required = true}}
+      {{input type="password" name="passwrd" value=passwrd placeholder="Password"  required= true}}
+      {{input type="text" name="phoneno"  value=phoneno placeholder="phoneno" required= true}}
+      {{input type ="text" name="designation" value = designation placeholder="designation" required= true}}
+      <button type="submit" class="btn">Sign Up</button>
+      <p class="message">Already registered?<a href="login"> Log in</a></p>
+  </form>
+
+  </div>
+
+</div>
+</div>
+
